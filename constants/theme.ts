@@ -1,53 +1,40 @@
-/**
- * Below are the colors that are used in the app. The colors are defined in the light and dark mode.
- * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
- */
-
-import { Platform } from 'react-native';
-
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
-
 export const Colors = {
   light: {
-    text: '#11181C',
-    background: '#fff',
-    tint: tintColorLight,
-    icon: '#687076',
-    tabIconDefault: '#687076',
-    tabIconSelected: tintColorLight,
+    primary: "#8B7CF6",
+    primaryLight: "#E9E6FF",
+    background: "#FAF9F6",
+    card: "#FFFFFF",
+    border: "#EAE7E2",
+    textPrimary: "#1F2937",
+    textSecondary: "#6B7280",
+    muted: "#9CA3AF",
+    badgeBg: "#F1EDFF",
+    badgeText: "#6D5BD0",
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
-    tabIconSelected: tintColorDark,
+    primary: "#9B8CFF",
+    primaryLight: "#3A3470",
+    background: "#0F1020",
+    card: "#17182B",
+    border: "#2A2C46",
+    textPrimary: "#E5E7EB",
+    textSecondary: "#B0B3C5",
+    muted: "#8B8FA8",
+    badgeBg: "#2D2A55",
+    badgeText: "#C7C2FF",
   },
-};
+} as const;
 
-export const Fonts = Platform.select({
-  ios: {
-    /** iOS `UIFontDescriptorSystemDesignDefault` */
-    sans: 'system-ui',
-    /** iOS `UIFontDescriptorSystemDesignSerif` */
-    serif: 'ui-serif',
-    /** iOS `UIFontDescriptorSystemDesignRounded` */
-    rounded: 'ui-rounded',
-    /** iOS `UIFontDescriptorSystemDesignMonospaced` */
-    mono: 'ui-monospace',
-  },
-  default: {
-    sans: 'normal',
-    serif: 'serif',
-    rounded: 'normal',
-    mono: 'monospace',
-  },
-  web: {
-    sans: "system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
-    serif: "Georgia, 'Times New Roman', serif",
-    rounded: "'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif",
-    mono: "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
-  },
-});
+export type Theme = "light" | "dark";
+export type ThemeColors = {
+  primary: string;
+  primaryLight: string;
+  background: string;
+  card: string;
+  border: string;
+  textPrimary: string;
+  textSecondary: string;
+  muted: string;
+  badgeBg: string;
+  badgeText: string;
+};
