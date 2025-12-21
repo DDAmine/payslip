@@ -1,12 +1,16 @@
-import { Ionicons } from "@expo/vector-icons";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet } from "react-native";
-import { ThemedText, ThemedView } from "../components";
+import {
+  GradientHeader,
+  ThemedText,
+  ThemedView,
+  ThemeToggle,
+} from "../components";
 import { useTheme } from "../context/ThemeContext";
 
 export default function HomeScreen() {
   const router = useRouter();
-  const { colors, toggleTheme, isDark } = useTheme();
+  const { colors } = useTheme();
 
   const handleViewDetails = () => {
     router.push("/details/1");
@@ -14,26 +18,9 @@ export default function HomeScreen() {
 
   return (
     <ThemedView style={styles.container}>
+      <GradientHeader title="Payslips" rightElement={<ThemeToggle />} />
+
       <ThemedView style={styles.content}>
-        <ThemedText type="title">Payslips</ThemedText>
-
-        <Pressable
-          onPress={toggleTheme}
-          style={[
-            styles.button,
-            { backgroundColor: colors.card, borderColor: colors.border },
-          ]}
-        >
-          <Ionicons
-            name={isDark ? "sunny" : "moon"}
-            size={20}
-            color={colors.primary}
-          />
-          <ThemedText style={styles.buttonText}>
-            {isDark ? "Light Mode" : "Dark Mode"}
-          </ThemedText>
-        </Pressable>
-
         <Pressable
           onPress={handleViewDetails}
           style={[styles.button, { backgroundColor: colors.primary }]}
@@ -65,7 +52,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 24,
     paddingVertical: 14,
     borderRadius: 12,
-    borderWidth: 1,
     gap: 8,
     minWidth: 200,
   },

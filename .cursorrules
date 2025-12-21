@@ -1,0 +1,57 @@
+# Payslip App Development Rules
+
+## Architecture & Code Quality
+- Maintain clear separation of concerns:
+  - `app/` - Screens (expo-router)
+  - `components/` - Reusable UI components
+  - `context/` - State management (ThemeContext, etc.)
+  - `constants/` - Theme colors, config values
+  - `types/` - TypeScript interfaces and types
+  - `data/` - Mock data and data fetching
+  - `utils/` - Helper functions and utilities
+  - `hooks/` - Custom React hooks
+- Use idiomatic React Native and TypeScript patterns
+- Keep components small, focused, and reusable
+- Avoid code duplication - extract shared logic
+- Use meaningful naming conventions
+
+## Type Safety & Tooling
+- Define proper TypeScript interfaces for all data structures
+- Type navigation params explicitly
+- Avoid `any` type - use `unknown` or proper types instead
+- Follow ESLint and Prettier configurations
+- Export types from `types/index.ts`
+
+## Native Handling & Platform Awareness
+- Use expo-file-system for file operations
+- Handle Android runtime permissions properly
+- Provide clear user feedback (success/error toasts)
+- Handle platform differences (iOS vs Android) gracefully
+- Use expo-sharing for share functionality
+
+## UX, Accessibility & Polish
+- Maintain consistent visual hierarchy
+- Support dark/light mode throughout
+- Use proper accessibility labels
+- Ensure intuitive navigation flow
+- Provide loading states and empty states
+
+## Stability & Error Handling
+- Wrap async operations in try/catch
+- Handle permission denied scenarios
+- Handle file write/read failures gracefully
+- Avoid unhandled promise rejections
+- No console.log in production code (use proper logging)
+
+## Testing
+- Write meaningful unit tests for utilities
+- Test basic UI behavior
+- Focus on testing business logic
+- Keep tests readable and focused
+
+## Documentation
+- Keep README up-to-date with setup instructions
+- Document architecture decisions
+- Note any trade-offs made
+- List known limitations and future improvements
+
