@@ -5,3 +5,7 @@ export interface Payslip {
   file: string;
 }
 
+export enum SortOrder {
+  Newest = "newest",
+  Oldest = "oldest",
+}

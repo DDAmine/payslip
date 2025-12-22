@@ -1,4 +1,4 @@
-import { Payslip } from "../types";
+import { Payslip, SortOrder } from "../types";
 
 /**
  * Format a date string to a readable format
@@ -70,16 +70,16 @@ export function getUniqueYears(payslips: Payslip[]): number[] {
 /**
  * Sort payslips by date
  * @param payslips - Array of payslips
- * @param order - 'newest' | 'oldest'
+ * @param order - SortOrder.Newest | SortOrder.Oldest
  */
 export function sortPayslipsByDate(
   payslips: Payslip[],
-  order: "newest" | "oldest"
+  order: SortOrder
 ): Payslip[] {
   return [...payslips].sort((a, b) => {
     const dateA = new Date(a.fromDate).getTime();
     const dateB = new Date(b.fromDate).getTime();
-    return order === "newest" ? dateB - dateA : dateA - dateB;
+    return order === SortOrder.Newest ? dateB - dateA : dateA - dateB;
   });
 }
 
