@@ -1,7 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { Pressable, StyleSheet, View } from "react-native";
 import { useTheme } from "../context/ThemeContext";
-import { Payslip } from "../types";
+import { FileType, Payslip } from "../types";
 import { formatPeriod, getMonthLabel } from "../utils";
 import { ThemedText } from "./ThemedText";
 
@@ -16,6 +16,9 @@ export function PayslipCard({ payslip, onPress }: PayslipCardProps) {
   const monthLabel = getMonthLabel(payslip.fromDate);
   const periodLabel = formatPeriod(payslip.fromDate, payslip.toDate);
 
+  const fileIcon = payslip.fileType === FileType.PDF ? "document-text" : "image";
+  const fileLabel = payslip.fileType === FileType.PDF ? "PDF" : "Image";
+
   return (
     <Pressable
       onPress={onPress}
@@ -28,10 +31,18 @@ export function PayslipCard({ payslip, onPress }: PayslipCardProps) {
         pressed && styles.pressed,
       ]}
       accessibilityRole="button"
-      accessibilityLabel={`Payslip for ${monthLabel}, period ${periodLabel}`}
+      accessibilityLabel={`Payslip for ${monthLabel}, period ${periodLabel}, ${fileLabel} file`}
       accessibilityHint="Double tap to view details"
     >
       <View style={styles.content}>
+        {/* File Type Icon */}
+        <View
+          style={[styles.iconContainer, { backgroundColor: colors.primaryLight }]}
+        >
+          <Ionicons name={fileIcon} size={20} color={colors.primary} />
+        </View>
+
+        {/* Text Content */}
         <View style={styles.textContainer}>
           <ThemedText type="subtitle" style={styles.title}>
             {monthLabel}
@@ -40,6 +51,8 @@ export function PayslipCard({ payslip, onPress }: PayslipCardProps) {
             {periodLabel}
           </ThemedText>
         </View>
+
+        {/* Chevron */}
         <Ionicons name="chevron-forward" size={20} color={colors.muted} />
       </View>
     </Pressable>
@@ -64,7 +77,14 @@ const styles = StyleSheet.create({
   content: {
     flexDirection: "row",
     alignItems: "center",
-    justifyContent: "space-between",
+    gap: 14,
+  },
+  iconContainer: {
+    width: 44,
+    height: 44,
+    borderRadius: 12,
+    justifyContent: "center",
+    alignItems: "center",
   },
   textContainer: {
     flex: 1,
@@ -74,5 +94,3 @@ const styles = StyleSheet.create({
     marginBottom: 2,
   },
 });
-
-
