@@ -1,8 +1,12 @@
+export { ActionButton } from "./ActionButton";
 export { Badge } from "./Badge";
 export { Card } from "./Card";
 export { EmptyState } from "./EmptyState";
+export { FilePreview } from "./FilePreview";
 export { GradientHeader } from "./GradientHeader";
 export { PayslipCard } from "./PayslipCard";
+export { PayslipDetails } from "./PayslipDetails";
+export { PayslipInfo } from "./PayslipInfo";
 export { SearchBar } from "./SearchBar";
 export { SortButton } from "./SortButton";
 export { ThemedText } from "./ThemedText";
