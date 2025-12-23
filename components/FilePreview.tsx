@@ -17,7 +17,10 @@ export function FilePreview({ source, fileType }: FilePreviewProps) {
   const { colors } = useTheme();
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const sourcet = {
+    uri: "https://pdfobject.com/pdf/sample.pdf",
+    cache: true,
+  };
   const handleLoadComplete = useCallback(() => {
     setIsLoading(false);
     setError(null);
@@ -94,7 +97,7 @@ export function FilePreview({ source, fileType }: FilePreviewProps) {
 
       {fileType === FileType.PDF ? (
         <Pdf
-          source={source}
+          source={sourcet}
           style={styles.pdf}
           onLoadComplete={handleLoadComplete}
           onError={(err) => handleError(err, "Failed to load PDF")}

@@ -1,4 +1,6 @@
+import { useMemo } from "react";
 import { ScrollView, StyleSheet, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { getPayslipAsset } from "../data/payslips";
 import { Payslip } from "../types";
 import { ActionButton } from "./ActionButton";
@@ -17,22 +19,28 @@ export function PayslipDetails({
   isDownloading = false,
 }: PayslipDetailsProps) {
   const asset = getPayslipAsset(payslip);
+  const insets = useSafeAreaInsets();
+
+  const contentContainerStyle = useMemo(
+    () => [
+      styles.scrollContent,
+      { paddingBottom: Math.max(insets.bottom, 20) + 20 },
+    ],
+    [insets.bottom]
+  );
 
   return (
     <ScrollView
       style={styles.scrollView}
-      contentContainerStyle={styles.scrollContent}
+      contentContainerStyle={contentContainerStyle}
       showsVerticalScrollIndicator={false}
     >
-      {/* Payslip Info Card */}
       <PayslipInfo payslip={payslip} />
 
-      {/* File Preview */}
       <View style={styles.previewContainer}>
         <FilePreview source={asset} fileType={payslip.fileType} />
       </View>
 
-      {/* Action Buttons */}
       <View style={styles.actions}>
         <ActionButton
           label="Download Payslip"
@@ -53,7 +61,6 @@ const styles = StyleSheet.create({
   scrollContent: {
     paddingHorizontal: 20,
     paddingTop: 8,
-    paddingBottom: 40,
     gap: 16,
   },
   previewContainer: {
@@ -64,4 +71,3 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 });
-

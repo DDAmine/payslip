@@ -29,7 +29,8 @@
         "android.permission.WRITE_EXTERNAL_STORAGE",
         "android.permission.DOWNLOAD_WITHOUT_NOTIFICATION",
         "android.permission.ACCESS_NETWORK_STATE"
-      ]
+      ],
+      "package": "com.payslip.app"
     },
     "web": {
       "output": "static",
